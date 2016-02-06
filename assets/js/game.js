@@ -65,7 +65,44 @@ var Game = {
     
     update : function() {
         //Updates the game screen.
-        //Empty for now.
+        //Handle arrow key presses, while not allowing illegal direction changes that will kill the player.
+        
+        if (cursors.right.isDown && direction != 'left') {
+            new_direction = 'right';
+        } else if (cursors.left.isDown && direction != 'right') {
+            new_direction = 'left';
+        } else if (cursors.up.isDown && direction != 'down') {
+            new_direction = 'up';
+        } else if (cursors.down.isDown && direction != 'up') {
+            new_direction = 'down';
+        }
+        
+        //A formula to calculate game speed based on the score.
+        //Higher score = higher speed. Speed limit is 10;
+        speed = Math.min(10, Math.floor(score / 5));
+        //Update speed value on game screen.
+        speedTextValue.text = ' ' + speed;
+        
+        //Phaser's update function has an update rate of 60 FPS.
+        //Slow down FPS using updateDelay variable to make the game playable.
+        
+        //Increase a counter on every update call.
+        updateDelay++;
+        
+        //Change things on the screen only if the reminder of updateDelay
+        // and 10 - speed is equal to 0. That will make the snake appear to move
+        // after a certain number of FPS.
+        if (updateDelay % (10 - speed) == 0) {
+            
+            //Snake movement.
+            
+            var firstCell = snake[snake.length - 1],
+                lastCell = snake.shift(),
+                oldLastCellx = lastCell.x,
+                oldLastCelly = lastCell.y;
+            
+        }  // End of if statement.
+        
     },
     
     generateApple : function() {
