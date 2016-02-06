@@ -127,9 +127,34 @@ var Game = {
             snake.push(lastCell);
             firstCell = lastCell;
             
+            //End of snake movement
+        
+        // Increase the snake's length when eating an apple.
+        // Create a block on the position of the last block.
+        // (because the last block will move to the front of the snake).
+        
+        if (addNew) {
+            snake.unshift(game.add.sprite(oldLastCellx, oldLastCelly, 'snake'));
+            addNew = false;
+        }
+        
+        // Check for apple collision.
+        this.appleCollision();
+        
+        // Check for collision with self. Parameter is the head of the snake.
+        this.selfCollision(firstcell);
+        
+        // Check collision with wall. Parameter is the head of the snake.
+        this.wallCollision(firstCell);
+            
         }  // End of if statement.
         
+        
     },
+    
+    appleCollision : function() {
+        
+    }
     
     generateApple : function() {
         //Start at random place in the grid (screen).
@@ -142,6 +167,7 @@ var Game = {
         //Add new apple.
         apple = game.add.sprite(randomX, randomY, 'apple');
     }
+    
     
     
 };
