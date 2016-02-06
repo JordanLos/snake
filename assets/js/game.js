@@ -101,6 +101,32 @@ var Game = {
                 oldLastCellx = lastCell.x,
                 oldLastCelly = lastCell.y;
             
+            if (new_direction) {
+                direction = new_direction;
+                new_direction = null;
+            }
+            
+            // Change the last cell's coordinates relative the the head of the snake, according to the direction.
+            if (direction == 'right') {
+                lastCell.x = firstCell.x + 15;
+                lastCell.y = firstCell.y;
+            } else if (direction == 'left') {
+                lastCell.x = firstCell.x - 15;
+                lastCell.y =firstCell.y;
+            } else if (direction == 'up') {
+                lastCell.x = firstCell.x;
+                lastCell.y = firstCell.y - 15;
+            } else if (direction == 'down') {
+                lastCell.x = firstCell.x;
+                lastCell.y = firstCell.y + 15;
+            }
+            
+            // Place the last cell at the front of the stack.
+            // Make it the first cell.
+            
+            snake.push(lastCell);
+            firstCell = lastCell;
+            
         }  // End of if statement.
         
     },
