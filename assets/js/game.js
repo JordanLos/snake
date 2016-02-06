@@ -153,8 +153,42 @@ var Game = {
     },
     
     appleCollision : function() {
-        
-    }
+        // Check if any part of the snake is overlapping the apple.
+        // This is needed if the apple spawns inside of the snake.
+        for (var i = 0; i < snake.length; i++) {
+            if (snake[i].x == apple.x && snake[i].y == apple.y) {
+                // Add new block to snake the next time it moves.
+                addNew = true;
+                // Destroy old apple.
+                apple.destroy();
+                // Make new apple.
+                this.generateApple();
+                //Increase score
+                score++;
+                //Update scoreboard.
+                scoreTextValue.text = score.toString();
+            }
+        }  // End of for loop.
+    
+    },
+    
+    selfCollision : function(head) {
+        //Check if the head overlaps any part of the snake.
+        for (var i = 0; i < snake.length - 1; i++) {
+            if (head.x == snake[i].x && head.y == snake[i].y) {
+                // If so: GAME OVER!
+                game.state.start('Game_Over');
+            }
+        }
+    },
+    
+    wallCollision : function(head) {
+        // Check if the head of the snake is within the game screen.
+        if(head.x >= 600 || head.x < 0 || head.y >= 450 || head.y < 0) {
+            // If the snake hit the wall: GAME OVER!
+            game.state.start('Game_Over');
+        }
+    },
     
     generateApple : function() {
         //Start at random place in the grid (screen).
