@@ -9,7 +9,7 @@ var Game = {
         //Load level resources.
         game.load.image('snake', './assets/images/snake.png');
         game.load.image('apple', './assets/images/apple.png');
-    }
+    },
     
     create : function() {
         

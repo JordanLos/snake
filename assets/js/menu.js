@@ -11,7 +11,7 @@ var Menu = {
 		// Add a game sprite, in this case the logo
 		// Parameters are : X, Y, image name (see above)
 		this.add.button(0, 0, 'menu', this.startGame, this);
-	}
+	},
     
     startGame : function() {
         //Change the state to game.
