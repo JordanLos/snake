@@ -9,7 +9,7 @@ var Game = {
         //Load level resources.
         game.load.image('snake', './assets/images/snake.png');
         game.load.image('apple', './assets/images/apple.png');
-    }
+    },
     
     create : function() {
         
@@ -62,4 +62,23 @@ var Game = {
         speedTextValue = game.add.text(558, 18, speed.toString(), textStyle_value);
         
     },
-}
+    
+    update : function() {
+        //Updates the game screen.
+        //Empty for now.
+    },
+    
+    generateApple : function() {
+        //Start at random place in the grid (screen).
+        //X between 0 and 585 (39*15)
+        //Y between 0 and 435 (29*15)
+        
+        var randomX = Math.floor(Math.random() * 40) * squareSize,
+            randomY = Math.floor(Math.random() * 30) * squareSize;
+        
+        //Add new apple.
+        apple = game.add.sprite(randomX, randomY, 'apple');
+    }
+    
+    
+};
