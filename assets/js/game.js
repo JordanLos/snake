@@ -142,7 +142,7 @@ var Game = {
         this.appleCollision();
         
         // Check for collision with self. Parameter is the head of the snake.
-        this.selfCollision(firstcell);
+        this.selfCollision(firstCell);
         
         // Check collision with wall. Parameter is the head of the snake.
         this.wallCollision(firstCell);
